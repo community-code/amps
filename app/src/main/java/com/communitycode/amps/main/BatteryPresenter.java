@@ -51,22 +51,6 @@ public class BatteryPresenter {
         mBatteryInfoInterface.setVoltage(voltage > 0 ? voltage : null);
     }
 
-    private int getBatteryCapacity(Context ctx) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            BatteryManager mBatteryManager = (BatteryManager) ctx.getSystemService(Context.BATTERY_SERVICE);
-            if (mBatteryManager != null) {
-                int chargeCounter = mBatteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CHARGE_COUNTER);
-                int capacity = mBatteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
-
-                if (chargeCounter != Integer.MIN_VALUE && capacity != Integer.MIN_VALUE) {
-                    return (int) (((float) chargeCounter / (float) capacity) * 100f);
-                }
-            }
-        }
-
-        return 0;
-    }
-
     public BatteryPresenter(Context ctx, BatteryInfoInterface batteryInfoInterface) {
         mBatteryInfoInterface = batteryInfoInterface;
         mCtx = ctx;

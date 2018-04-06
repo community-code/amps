@@ -206,7 +206,7 @@ public class UnofficialBatteryApiPreference extends DialogPreference {
                 UnofficialBatteryApiPreference that = UnofficialBatteryApiPreference.this;
 
                 mAdapter.setCheckedPosition(position);
-                that.mClickedDialogEntryIndex = position;
+                that.mClickedDialogEntryIndex = that.mClickedDialogEntryIndex == position ? -1 : position;
 
                 Dialog dialog = that.getDialog();
                 that.onClick(dialog, DialogInterface.BUTTON_POSITIVE);
@@ -226,6 +226,13 @@ public class UnofficialBatteryApiPreference extends DialogPreference {
 
         if (positiveResult && mClickedDialogEntryIndex >= 0 && mEntryValues != null) {
             String value = mEntryValues.get(mClickedDialogEntryIndex);
+            if (callChangeListener(value)) {
+                setValue(value);
+            }
+        }
+        // Same item was clicked. Deselect item
+        if (positiveResult && mClickedDialogEntryIndex == -1) {
+            String value = null;
             if (callChangeListener(value)) {
                 setValue(value);
             }

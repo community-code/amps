@@ -9,9 +9,7 @@ import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,7 +17,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.communitycode.amps.main.R;
-import com.communitycode.amps.main.ReportHome;
 import com.communitycode.amps.main.battery.UnofficialBatteryApi;
 import com.communitycode.amps.main.battery.UnofficialBatteryMethod;
 

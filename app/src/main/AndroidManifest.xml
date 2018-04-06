@@ -35,11 +35,5 @@
             android:theme="@style/AppTheme"
             android:parentActivityName="com.communitycode.amps.main.MainActivity">
         </activity>
-        <activity
-            android:name="com.communitycode.amps.main.DebugActivity"
-            android:label="@string/action_debug"
-            android:theme="@style/AppTheme"
-            android:parentActivityName="com.communitycode.amps.main.MainActivity">
-        </activity>
     </application>
 </manifest>

@@ -121,11 +121,6 @@ public class MainActivity extends AppCompatActivity implements BatteryInfoInterf
             startActivity(intent);
             return true;
         }
-        else if (id == R.id.action_debug) {
-            Intent intent = new Intent(this, DebugActivity.class);
-            startActivity(intent);
-            return true;
-        }
 
 
         return super.onOptionsItemSelected(item);
