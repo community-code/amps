@@ -22,9 +22,5 @@
         <intent android:action="android.intent.action.VIEW"
             android:data="https://github.com/community-code/amps" />
     </Preference>
-    <com.communitycode.amps.main.settings.SendDebugReportPreference
-        android:title="@string/send_error_report"
-        android:summary="@string/send_error_report_summary"
-        />
 
 </PreferenceScreen>
