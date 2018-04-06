@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="divider">@android:color/darker_gray</color>
+    <color name="fullAccent">@android:color/holo_blue_bright</color>
+    <color name="dischargingAccent">@android:color/holo_orange_light</color>
+    <color name="chargingAccent">#20B2AA</color>
+</resources>

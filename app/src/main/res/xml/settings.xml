@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/pref_units"
+        android:key="pref_units_settings">
+        <CheckBoxPreference
+            android:key="use_celsius"
+            android:title="@string/use_celsius"
+            android:dialogTitle="@string/use_celsius"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+    <com.communitycode.amps.main.settings.UnofficialBatteryApiPreference
+        android:key="unofficial_measurement"
+        android:title="@string/unofficial_measurement"
+        android:summary="@string/unofficial_setting_summary"
+        />
+    <Preference android:title="@string/license" >
+        <intent android:action="android.intent.action.VIEW"
+            android:data="https://github.com/community-code/amps/blob/master/license.md" />
+    </Preference>
+    <Preference android:title="@string/about" >
+        <intent android:action="android.intent.action.VIEW"
+            android:data="https://github.com/community-code/amps" />
+    </Preference>
+    <com.communitycode.amps.main.settings.SendDebugReportPreference
+        android:title="@string/send_error_report"
+        android:summary="@string/send_error_report_summary"
+        />
+
+</PreferenceScreen>

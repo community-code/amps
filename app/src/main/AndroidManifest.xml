@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.communitycode.amps.main">
+
+    <!-- Needed to read system files for unofficial battery api -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- Needed to report debug information home -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="@xml/backup_descriptor">
+        <activity
+            android:name="com.communitycode.amps.main.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.communitycode.amps.main.settings.SettingsActivity"
+            android:label="@string/action_settings"
+            android:theme="@style/AppTheme"
+            android:parentActivityName="com.communitycode.amps.main.MainActivity">
+        </activity>
+        <activity
+            android:name="com.communitycode.amps.main.DebugActivity"
+            android:label="@string/action_debug"
+            android:theme="@style/AppTheme"
+            android:parentActivityName="com.communitycode.amps.main.MainActivity">
+        </activity>
+    </application>
+</manifest>

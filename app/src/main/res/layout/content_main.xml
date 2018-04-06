@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/root_main_activity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?colorPrimary"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <ProgressBar
+                android:id="@+id/indeterminateBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:animationResolution="1000"
+                android:indeterminate="true"
+                android:indeterminateDuration="100"
+                android:indeterminateOnly="true"
+                android:minHeight="30dp"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:scaleY="3" />
+
+            <TextView style="@style/Amps"
+                android:layout_below="@+id/indeterminateBar"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/amps_value"/>
+
+            <TextView style="@style/Amps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/amps_value"
+                android:layout_toEndOf="@+id/amps_value"
+                android:layout_marginStart="36sp"
+                android:id="@+id/amp_info"
+                android:text="@string/amp_info"
+                android:visibility="invisible"
+                android:onClick="goToCurrentInformation"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/min_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/amps_value"
+                android:orientation="horizontal">
+                <TextView style="@style/MinMax"
+                    android:text="@string/min_label"/>
+                <TextView style="@style/MinMax"
+                    android:text="@string/space"/>
+                <TextView style="@style/MinMax"
+                    android:id="@+id/min_value"
+                    android:text="@string/blank_value"/>
+            </LinearLayout>
+
+            <TextView
+                style="@style/MinMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/min_wrapper"
+                android:layout_centerHorizontal="true"
+                android:onClick="resetCurrentHistory"
+                android:text="@string/reload" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/min_wrapper"
+                android:orientation="horizontal">
+                <TextView style="@style/MinMax"
+                    android:text="@string/max_label"/>
+                <TextView style="@style/MinMax"
+                    android:text="@string/space"/>
+                <TextView style="@style/MinMax"
+                    android:id="@+id/max_value"
+                    android:text="@string/blank_value"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:stretchColumns="0,2">
+
+            <TableRow style="@style/TableRow">
+                <LinearLayout style="@style/TableCell">
+
+                    <TextView
+                        style="@style/TableLabel"
+                        android:text="@string/charging_status_label" />
+                    <TextView style="@style/TableValue"
+                        android:id="@+id/charging_status_value"/>
+                </LinearLayout>
+
+                <View style="@style/DividerVertical"/>
+
+                <LinearLayout style="@style/TableCell">
+                    <TextView style="@style/TableLabel"
+                        android:text="@string/plugged_in_label" />
+                    <TextView style="@style/TableValue"
+                        android:id="@+id/plugged_in_value"/>
+                </LinearLayout>
+            </TableRow>
+
+            <View style="@style/DividerHorizontal"/>
+
+            <TableRow style="@style/TableRow">
+                <LinearLayout style="@style/TableCell">
+                    <TextView style="@style/TableLabel"
+                        android:text="@string/battery_level_label" />
+                    <TextView style="@style/TableValue"
+                        android:id="@+id/battery_level_value"/>
+                </LinearLayout>
+
+                <View style="@style/DividerVertical"/>
+
+                <LinearLayout style="@style/TableCell">
+                    <TextView style="@style/TableLabel"
+                        android:text="@string/health_label" />
+                    <TextView style="@style/TableValue"
+                        android:id="@+id/health_value"/>
+                </LinearLayout>
+            </TableRow>
+
+            <View style="@style/DividerHorizontal"/>
+
+            <TableRow style="@style/TableRow">
+                <LinearLayout style="@style/TableCell">
+                    <TextView style="@style/TableLabel"
+                        android:text="@string/technology_label" />
+                    <TextView style="@style/TableValue"
+                        android:id="@+id/technology_value"/>
+                </LinearLayout>
+
+                <View style="@style/DividerVertical"/>
+
+                <LinearLayout style="@style/TableCell">
+                    <TextView style="@style/TableLabel"
+                        android:text="@string/temperature_label" />
+                    <TextView style="@style/TableValue"
+                        android:id="@+id/temperature_value"/>
+                </LinearLayout>
+            </TableRow>
+
+            <View style="@style/DividerHorizontal"/>
+
+            <TableRow style="@style/TableRow">
+                <LinearLayout style="@style/TableCell">
+                    <TextView style="@style/TableLabel"
+                        android:text="@string/voltage_label" />
+                    <TextView style="@style/TableValue"
+                        android:id="@+id/voltage_value"/>
+                </LinearLayout>
+
+                <View style="@style/DividerVertical"/>
+
+                <LinearLayout style="@style/TableCell">
+                    <TextView style="@style/TableLabel"
+                        android:text="@string/build_id_label" />
+                    <TextView style="@style/TableValue"
+                        android:id="@+id/build_id_value"/>
+                </LinearLayout>
+            </TableRow>
+
+            <View style="@style/DividerHorizontal"/>
+
+            <TableRow style="@style/TableRow">
+                <LinearLayout style="@style/TableCell">
+                    <TextView style="@style/TableLabel"
+                        android:text="@string/model_label" />
+                    <TextView style="@style/TableValue"
+                        android:id="@+id/model_value"/>
+                </LinearLayout>
+
+                <View style="@style/DividerVertical"/>
+
+                <LinearLayout style="@style/TableCell">
+                    <TextView style="@style/TableLabel"
+                        android:text="@string/android_version_label" />
+                    <TextView style="@style/TableValue"
+                        android:id="@+id/android_version_value"/>
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+</ScrollView>
