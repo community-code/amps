@@ -2,7 +2,7 @@
 
 Check how quickly your phone is charging/discharging. The accuracy is questionable but is often useful for checking if a charging cable is working.
 
-App is in beta
+App is in beta. If there is interest in the app I will work to improve it.
 
 # License
 
