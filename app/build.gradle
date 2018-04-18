@@ -6,8 +6,8 @@ android {
         applicationId "com.communitycode.amps.main"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 3
-        versionName "3.0"
+        versionCode 5
+        versionName "5.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -17,6 +17,8 @@ android {
             pseudoLocalesEnabled true
         }
         debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             pseudoLocalesEnabled true
         }
     }

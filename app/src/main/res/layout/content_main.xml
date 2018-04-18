@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/amps_value"
-                android:layout_toEndOf="@+id/amps_value"
+                android:layout_alignParentEnd="true"
                 android:layout_marginStart="36sp"
                 android:id="@+id/amp_info"
                 android:text="@string/amp_info"

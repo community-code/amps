@@ -4,8 +4,6 @@
 
     <!-- Needed to read system files for unofficial battery api -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!-- Needed to report debug information home -->
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"

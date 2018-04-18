@@ -53,37 +53,35 @@ public class CurrentTracker {
     }
 
     private void updateAmps() {
-        Integer current;
+        Integer current = null;
+        boolean showAmpInfo = true;
 
-        if ((current = getCurrentByPreference()) != null) {
-            mBatteryInfoInterface.showAmpInfoButton(true);
+        // Get current by preference
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(mCtx);
+        String json = sharedPref.getString("unofficial_measurement", null);
+        BatteryMethodInterface method = BatteryMethodPickler.fromJson(json, mCtx);
+        if (method != null) {
+            current = method.read();
         }
         else {
-            current = getCurrentByBestGuess();
+            // Get current by best guess
+            current = new OfficialBatteryMethod(mCtx).read();
+
+            if (current == null || current == 0) {
+                current = UnofficialBatteryApi.getCurrent();
+            }
+            else {
+                // Official method worked and preference is not set. No need to clutter the UI.
+                showAmpInfo = false;
+            }
         }
+
+        mBatteryInfoInterface.showAmpInfoButton(showAmpInfo);
 
         if (current != null) {
             addHistory(current);
             updateAmpStatistics();
         }
-    }
-
-    private Integer getCurrentByPreference() {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(mCtx);
-        String json = sharedPref.getString("unofficial_measurement", null);
-        BatteryMethodInterface method = BatteryMethodPickler.fromJson(json, mCtx);
-        return (method != null) ? method.read() : null;
-    }
-
-    private Integer getCurrentByBestGuess() {
-        Integer current = new OfficialBatteryMethod(mCtx).read();
-
-        if (current == null || Math.abs(current) == 0) {
-            current = UnofficialBatteryApi.getCurrent();
-            mBatteryInfoInterface.showAmpInfoButton(true);
-        }
-
-        return current;
     }
 
     protected void addHistory(int value) {
