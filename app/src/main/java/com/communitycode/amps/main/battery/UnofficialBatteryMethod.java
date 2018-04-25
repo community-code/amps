@@ -15,7 +15,7 @@ public class UnofficialBatteryMethod implements BatteryMethodInterface {
     public int reader;
     public transient String[] modelFilter;
 
-    UnofficialBatteryMethod(int reader, String filePath, float scale, String dischargeField, String chargeField, String[] modelFilter) {
+    public UnofficialBatteryMethod(int reader, String filePath, float scale, String dischargeField, String chargeField, String[] modelFilter) {
         this.filePath = filePath;
         this.scale = scale;
         this.reader = reader;

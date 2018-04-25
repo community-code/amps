@@ -1,6 +1,7 @@
 package com.communitycode.amps.main.settings;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.communitycode.amps.main.battery.BatteryMethodInterface;
 import com.communitycode.amps.main.battery.OfficialBatteryMethod;
@@ -16,6 +17,15 @@ import java.lang.reflect.Type;
 
 public class BatteryMethodPickler {
     private static Class<BatteryMethodInterface>[] x = new Class[]{OfficialBatteryMethod.class, UnofficialBatteryMethod.class};
+    public static String DISCHARGEFIELD = "DISCHARGEFIELD";
+    public static String CHARGEFIELD = "CHARGEFIELD";
+    public static String FILEPATH = "FILEPATH";
+    public static String SCALE = "SCALE";
+    public static String READER = "READER";
+    public static String TYPE = "TYPE";
+    public static String OFFICIALBATTERYMETHOD = "OFFICIALBATTERYMETHOD";
+    public static String UNOFFICIALBATTERYMETHOD = "UNOFFICIALBATTERYMETHOD";
+
 
     public static BatteryMethodInterface fromJson(String json, Context mCtx) {
         if (json == null) {
@@ -23,51 +33,52 @@ public class BatteryMethodPickler {
         }
 
         try {
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(OfficialBatteryMethod.class, new OfficialBatteryApiInstanceCreator(mCtx))
-                    .create();
-            JsonParser jsonParser = new JsonParser();
-            JsonObject obj = jsonParser.parse(json).getAsJsonObject();
-            int class_index = obj.getAsJsonPrimitive("type").getAsInt();
-            JsonElement data = obj.getAsJsonObject("data");
-            return gson.fromJson(data, x[class_index]);
-        }
-        catch (Exception ignored) {
-        }
-        return null;
-    }
-
-    public static String toJson(BatteryMethodInterface obj) {
-        for (int i = 0; i < x.length; i ++) {
-            if (x[i].isInstance(obj)) {
-                Gson gson = new Gson();
-                return gson.toJson(new Wrapper(i, obj));
+            Gson gson = new Gson();
+            JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
+            String type = jsonObject.get(TYPE).getAsString();
+            if (type.equals(OFFICIALBATTERYMETHOD)) {
+                return new OfficialBatteryMethod(mCtx);
+            }
+            else if (type.equals(UNOFFICIALBATTERYMETHOD)) {
+                return new UnofficialBatteryMethod(
+                        jsonObject.get(READER).getAsInt(),
+                        jsonObject.get(FILEPATH).getAsString(),
+                        jsonObject.get(SCALE).getAsFloat(),
+                        jsonObject.has(DISCHARGEFIELD) ? jsonObject.get(DISCHARGEFIELD).getAsString() : null,
+                        jsonObject.has(CHARGEFIELD) ? jsonObject.get(CHARGEFIELD).getAsString() : null,
+                        new String[] {});
+            }
+            else {
+                Log.d("Amps", "Unknown method. Json="+json);
             }
         }
+        catch (Exception e) {
+            Log.d("Amps", "Failed to parse preference. Json=" + json + " error=" + e.getMessage());
+        }
         return null;
     }
 
-    private static class Wrapper {
-        int type;
-        BatteryMethodInterface data;
 
-        public Wrapper(int type, BatteryMethodInterface data) {
-            this.type = type;
-            this.data = data;
+    public static String toJson(BatteryMethodInterface obj) {
+        if (OfficialBatteryMethod.class.isInstance(obj)) {
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty(TYPE, OFFICIALBATTERYMETHOD);
+            Gson gson = new Gson();
+            return gson.toJson(jsonObject);
         }
-    }
-
-    private static class OfficialBatteryApiInstanceCreator implements InstanceCreator<OfficialBatteryMethod> {
-        private Context mCtx;
-
-        OfficialBatteryApiInstanceCreator(Context context) {
-            mCtx = context;
+        else if (UnofficialBatteryMethod.class.isInstance(obj)) {
+            UnofficialBatteryMethod method = (UnofficialBatteryMethod) obj;
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty(TYPE, UNOFFICIALBATTERYMETHOD);
+            jsonObject.addProperty(DISCHARGEFIELD, method.dischargeField);
+            jsonObject.addProperty(CHARGEFIELD, method.chargeField);
+            jsonObject.addProperty(FILEPATH, method.filePath);
+            jsonObject.addProperty(READER, method.reader);
+            jsonObject.addProperty(SCALE, method.scale);
+            Gson gson = new Gson();
+            return gson.toJson(jsonObject);
         }
 
-
-        @Override
-        public OfficialBatteryMethod createInstance(Type type) {
-            return new OfficialBatteryMethod(mCtx);
-        }
+        return null;
     }
 }

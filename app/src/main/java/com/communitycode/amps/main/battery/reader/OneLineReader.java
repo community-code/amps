@@ -48,7 +48,8 @@ public class OneLineReader {
             text = br.readLine();
 
         } catch (Exception ex) {
-            Log.e("Amps", ex.getMessage(), ex);
+            // Expected to fail frequently due to permissions
+            Log.d("Amps", ex.getMessage(), ex);
         }
         finally
         {
@@ -72,13 +73,14 @@ public class OneLineReader {
         Integer value = null;
 
         try {
-            value = Integer.parseInt(text);
+            if (text != null) {
+                value = Integer.parseInt(text);
+            }
         } catch (NumberFormatException nfe) {
-            Log.e("Amps", nfe.getMessage(), nfe);
+            // Expected to fail frequently due to unknown format of text
+            Log.d("Amps", nfe.getMessage(), nfe);
         }
 
         return value;
-
     }
-
 }

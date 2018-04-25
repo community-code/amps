@@ -3,6 +3,7 @@ package com.communitycode.amps.main.battery;
 
 import android.os.Build;
 
+
 import java.util.Locale;
 
 public class UnofficialBatteryApi {
