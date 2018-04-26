@@ -1,8 +1,12 @@
 # Amps
 
-Check how quickly your phone is charging/discharging. The accuracy is questionable but is often useful for checking if a charging cable is working.
+Do you think your phone is charging slowly? This app lets you check if your charger/cable is working!
 
-App is in beta. If there is interest in the app I will work to improve it.
+Measure how quickly your battery is charging/discharging. Immediately. No waiting!
+
+Not every device is supported. Not mA accurate but as accurate as can be. This software is still in alpha. Android 4.2.2+
+
+Please send any questions or comments so I can improve this app.
 
 # License
 

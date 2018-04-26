@@ -4,6 +4,4 @@ Measure how quickly your battery is charging/discharging. Immediately. No waitin
 
 Not every device is supported. Not mA accurate but as accurate as can be. This software is still in alpha. Android 4.2.2+
 
-How to use this app:
-
-Start the app.
+Please send any questions or comments so I can improve this app.

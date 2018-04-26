@@ -40,11 +40,11 @@ public class CurrentTrackerUnitTest {
         BatteryInfoInterface mockBatteryInfo = mock(BatteryInfoInterface.class);
 
         CurrentTracker currentTracker = new CurrentTracker(null, mockBatteryInfo);
-        currentTracker.addHistory(1000);
-        currentTracker.addHistory(-10000);
-        currentTracker.addHistory(5000);
-        currentTracker.addHistory(10000);
-        currentTracker.addHistory(-3000);
+        currentTracker.addHistory(10);
+        currentTracker.addHistory(-10);
+        currentTracker.addHistory(5);
+        currentTracker.addHistory(10);
+        currentTracker.addHistory(-3);
 
         currentTracker.updateAmpStatistics();
 
