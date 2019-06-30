@@ -73,7 +73,7 @@ public class UnofficialBatteryMethod implements BatteryMethodInterface {
         return filePath.equals(b.filePath)
                 && reader == b.reader
                 && scale == b.scale
-                && chargeField.equals(b.chargeField)
-                && dischargeField.equals(b.dischargeField);
+                && (chargeField == b.chargeField || (chargeField != null && chargeField.equals(b.chargeField)))
+                && (dischargeField == b.dischargeField || (dischargeField != null && dischargeField.equals(b.dischargeField)));
     }
 }
